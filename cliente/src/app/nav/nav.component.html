@@ -1,21 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Welcomers</a>
+        <a class="navbar-brand" routerLink='/'>Welcomers</a>
 
           <ul class="navbar-nav mr-auto" *ngIf="cuentaServicio.usuarioActual$ | async">
+            <ng-container></ng-container>
             <li class="nav-item">
-              <a class="nav-link" href="#">Matches</a>
+              <a class="nav-link" routerLink='/miembros' routerLinkActive='active' >Mascotas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Listas</a>
+              <a class="nav-link" routerLink='/atenciones' routerLinkActive='active'>Atenciones</a>
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" routerLink='/listas' routerLinkActive='active'>Listas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Mensajes</a>
+              <a class="nav-link" routerLink='/mensajes' routerLinkActive='active'>Mensajes</a>
             </li>         
           </ul>
 
-          <div class="dropdown" *ngIf="cuentaServicio.usuarioActual$ | async" dropdown>
-              <a class="dropdown-toggle text-light" dropdownToggle>Bienvenido usuario ql</a>
+          <div class="dropdown" *ngIf="(cuentaServicio.usuarioActual$ | async) as usuarioLogin" dropdown>
+              <a class="dropdown-toggle text-light" dropdownToggle>Bienvenido {{usuarioLogin.loginUsuario |titlecase}}</a>
               <div class="dropdown-menu mt-3" *dropdownMenu>
                   <a class="dropdown-item">Editar perfil</a>
                   <div class="dropdown-divider"></div>
@@ -24,9 +28,9 @@
           </div>
 
           <form *ngIf="(cuentaServicio.usuarioActual$ | async) === null" #formularioLogin="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
-            <input name="loginusuario" [(ngModel)]="modelo.loginusuario" class="form-control mr-sm-2" type="text" placeholder="LoginUsuario">
+            <input name="loginUsuario" [(ngModel)]="modelo.loginUsuario" class="form-control mr-sm-2" type="text" placeholder="LoginUsuario">
             <input name="password" [(ngModel)]="modelo.password" class="form-control mr-sm-2" type="password" placeholder="Password">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
           </form>
     </div>
     

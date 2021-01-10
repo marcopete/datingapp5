@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { error } from 'protractor';
 import { Observable } from 'rxjs';
 import { Usuario } from '../_modelos/usuario';
@@ -10,26 +12,26 @@ import { CuentaService } from '../_servicios/cuenta.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  modelo: any = {}
-  // logueado: boolean;
+  modelo: any = {};
 
-  constructor(public cuentaServicio: CuentaService) { }
+  constructor(public cuentaServicio: CuentaService, private rutero: Router, private servicioToastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   login() {
     this.cuentaServicio.login(this.modelo).subscribe(response => {
-      console.log(response);
+      this.rutero.navigateByUrl('/miembros');
       // this.logueado = true;
     }, error => {
       console.log(error);
+      this.servicioToastr.error(error.error);
     })
   }
 
   logout() {
     this.cuentaServicio.logout();
-    // this.logueado = false;
+    this.rutero.navigateByUrl('/');
   }
 
   // obtenerUsuarioActual() {

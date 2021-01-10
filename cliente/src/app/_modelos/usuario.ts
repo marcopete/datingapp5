@@ -1,4 +1,4 @@
 export interface Usuario {
-    loginusuario: string;
+    loginUsuario: string;
     token: string;
 }

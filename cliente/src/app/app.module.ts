@@ -11,6 +11,13 @@ import { NavComponent } from './nav/nav.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { InicioComponent } from './inicio/inicio.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { MiembroListaComponent } from './miembros/miembro-lista/miembro-lista.component';
+import { MiembroDetalleComponent } from './miembros/miembro-detalle/miembro-detalle.component';
+import { ListasComponent } from './listas/listas.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
+import { AtencionesComponent } from './atenciones/atenciones.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modulos/shared.module';
 
 
 @NgModule({
@@ -18,7 +25,12 @@ import { RegistrarComponent } from './registrar/registrar.component';
     AppComponent,
     NavComponent,
     InicioComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    MiembroListaComponent,
+    MiembroDetalleComponent,
+    ListasComponent,
+    MensajesComponent,
+    AtencionesComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +39,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
